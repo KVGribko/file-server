@@ -11,6 +11,11 @@ poetry install
 poetry shell
 ```
 
+### Запуск всего приложения в docker-compose
+
+```bush
+make docker
+```
 
 ### Запуск
 
@@ -19,7 +24,7 @@ poetry shell
    make env
    ```
 
-2. Создание базы в docker-контейнере (чтобы не работать с локальной базой):
+2. Создание базы в docker-контейнере:
    ```bush
    make db
    ```
