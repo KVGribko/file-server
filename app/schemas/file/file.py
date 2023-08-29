@@ -2,10 +2,6 @@ from pydantic import BaseModel, UUID4
 from datetime import datetime
 
 
-class FileUploadRequest(BaseModel):
-    path: str
-
-
 class FileModel(BaseModel):
     id: UUID4
     path: str
@@ -20,8 +16,5 @@ class FileModel(BaseModel):
 
 
 class UserFilesModel(BaseModel):
-    id: UUID4
+    account_id: UUID4
     files: list[FileModel]
-
-    class Config:
-        from_attributes = True

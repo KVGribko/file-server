@@ -60,6 +60,8 @@ app = get_app()
 
 if __name__ == "__main__":  # pragma: no cover
     settings_for_application = get_settings()
+    files_folder = get_settings().FILE_FOLDER
+    files_folder.mkdir(exist_ok=True)
     run(
         "app.__main__:app",
         host=get_hostname(settings_for_application.APP_HOST),

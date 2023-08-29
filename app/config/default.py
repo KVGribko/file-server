@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from fastapi.security import OAuth2PasswordBearer
 from passlib.context import CryptContext
 from pydantic_settings import BaseSettings
@@ -29,6 +31,8 @@ class DefaultSettings(BaseSettings):
     OAUTH2_SCHEME: OAuth2PasswordBearer = OAuth2PasswordBearer(
         tokenUrl=f"{APP_HOST}:{APP_PORT}{PATH_PREFIX}/user/authentication"
     )
+
+    FILE_FOLDER: Path = Path(__file__).parent.parent.parent / "files"
 
     @property
     def database_settings(self) -> dict:
