@@ -10,7 +10,6 @@ import pytest
 from alembic.command import upgrade
 from alembic.config import Config
 from httpx import AsyncClient
-from mock import AsyncMock
 from sqlalchemy.ext.asyncio import AsyncEngine, AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy_utils import create_database, database_exists, drop_database
@@ -71,7 +70,7 @@ def alembic_config(postgres) -> Config:
     """
     Создает файл конфигурации для alembic.
     """
-    cmd_options = SimpleNamespace(config="app/db/", name="alembic", pg_url=postgres, raiseerr=False, x=None)
+    cmd_options = SimpleNamespace(config="", name="alembic", pg_url=postgres, raiseerr=False, x=None)
     return make_alembic_config(cmd_options)
 
 
@@ -99,7 +98,6 @@ async def client(migrated_postgres, manager: SessionManager = SessionManager()) 
     """
     app = get_app()
     manager.refresh()  # без вызова метода изменения конфига внутри фикстуры postgres не подтягиваются в класс
-    utils_module.check_website_exist = AsyncMock(return_value=(True, "Status code < 400"))
     yield AsyncClient(app=app, base_url="http://test")
 
 
@@ -119,19 +117,3 @@ def session_factory_async(engine_async) -> sessionmaker:
 async def session(session_factory_async) -> AsyncSession:
     async with session_factory_async() as session:
         yield session
-
-
-'''@pytest.fixture
-async def data_sample(session) -> UrlStorage:
-    """
-    Creates minimum data sample for tests.
-    """
-    suffix = str(uuid4())[:5]
-    new_object = UrlStorage(
-        long_url=f"https://{uuid4()}.com",
-        short_url=suffix,
-    )
-    session.add(new_object)
-    await session.commit()
-    await session.refresh(new_object)
-    return new_object'''

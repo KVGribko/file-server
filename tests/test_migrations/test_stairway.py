@@ -17,7 +17,7 @@ from tests.utils import make_alembic_config
 def get_revisions():
     # Create Alembic configuration object
     # (we don't need database for getting revisions list)
-    options = SimpleNamespace(config="app/db/", name="alembic", pg_url=None, raiseerr=False, x=None)
+    options = SimpleNamespace(config="", name="alembic", pg_url=None, raiseerr=False, x=None)
     config = make_alembic_config(options)
 
     # Get directory object with Alembic migrations

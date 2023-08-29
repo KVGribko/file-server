@@ -23,9 +23,14 @@ HELP_FUN = \
 
 
 # Commands
-env:  ##@Environment Create .env file with variables
+env:  ##@Environment Create .env file with variables for localhost use
 	@$(eval SHELL:=/bin/bash)
 	@cp .env.example .env
+## @echo "SECRET_KEY=$$(openssl rand -hex 32)" >> .env
+
+env_prod:  ##@Environment Create .env file with variables for docker
+	@$(eval SHELL:=/bin/bash)
+	@cp .env.example.docker .env
 ## @echo "SECRET_KEY=$$(openssl rand -hex 32)" >> .env
 
 help: ##@Help Show this help
@@ -47,7 +52,7 @@ format_w:  ##@Code Reformat code with isort and black on windows
 	poetry run python -m black $(CODE)
 
 migrate:  ##@Database Do all migrations in database
-	cd $(APPLICATION_NAME)/db && alembic upgrade $(args)
+	alembic upgrade $(args)
 
 run:  ##@Application Run application server
 	poetry run python3 -m $(APPLICATION_NAME)
@@ -55,8 +60,15 @@ run:  ##@Application Run application server
 run_w:  ##@Application Run application server on windows
 	poetry run python -m $(APPLICATION_NAME)
 
+run_prod:
+	python3 -m $(APPLICATION_NAME)
+
 revision:  ##@Database Create new revision file automatically with prefix (ex. 2022_01_01_14cs34f_message.py)
-	cd $(APPLICATION_NAME)/db && alembic revision --autogenerate
+ifdef title
+	alembic revision --autogenerate -m "$(title)"
+else
+	alembic revision --autogenerate
+endif
 
 test:  ##@Testing Test application with pytest
 	make db && $(TEST)

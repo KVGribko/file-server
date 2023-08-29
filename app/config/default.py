@@ -2,27 +2,22 @@ from pydantic_settings import BaseSettings
 
 
 class DefaultSettings(BaseSettings):
-    """
-    Default configs for application.
-
-    Usually, we have three environments: for development, testing and production.
-    But in this situation, we only have standard settings for local development.
-    """
-
     ENV: str = "local"
     PATH_PREFIX: str = "/api/v1"
     APP_HOST: str = "http://127.0.0.1"
     APP_PORT: int = 8080
-    APP_TITLE: str = "fast api app"
+    APP_TITLE: str = "fast_api_app"
+    APP_DESCRIPTION: str = "Микросервис, реализующий "
 
-    POSTGRES_DB: str = "app_db"
-    POSTGRES_HOST: str = "localhost"
-    POSTGRES_USER: str = "user"
-    POSTGRES_PORT: int = "32701"
-    POSTGRES_PASSWORD: str = "hackme"
     DB_CONNECT_RETRY: int = 20
     DB_POOL_SIZE: int = 15
     ECHO_QUERY: bool = False
+    POSTGRES_DB: str = "app_db"
+    POSTGRES_HOST: str = "localhost"
+    POSTGRES_PASSWORD: str = "hackme"
+    POSTGRES_PORT: int = 32700
+    POSTGRES_PORT_DOCKER: int = 5432
+    POSTGRES_USER: str = "user"
 
     @property
     def database_settings(self) -> dict:

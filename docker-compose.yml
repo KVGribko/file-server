@@ -2,15 +2,25 @@ version: '3'
 
 services:
   db:
-    container_name: 'file_storage_postgres'
+    container_name: 'file_storage_db'
     image: 'postgres'
     restart: always
     env_file:
       - ./.env
     ports:
-      - ${POSTGRES_PORT}:5432
+      - '${POSTGRES_PORT}:${POSTGRES_PORT_DOCKER}'
     volumes:
       - db_value:/var/lib/postgresql/data/
+
+  back:
+    container_name: 'file_storage_back'
+    build: ./
+    ports:
+      - '${APP_PORT}:${APP_PORT}'
+    env_file:
+      - ./.env
+    depends_on:
+      - db
 
 networks:
   enrollment:

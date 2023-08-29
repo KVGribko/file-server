@@ -7,11 +7,14 @@ from app.schemas import PingResponse
 from app.utils.health_check import health_check_db
 
 
-api_router = APIRouter(tags=["Health check"])
+api_router = APIRouter(
+    prefix="/health_check",
+    tags=["Health check"],
+)
 
 
 @api_router.get(
-    "/health_check/ping",
+    "/ping/",
     response_model=PingResponse,
     status_code=status.HTTP_200_OK,
 )
@@ -20,10 +23,14 @@ async def health_check():
 
 
 @api_router.get(
-    "/health_check/ping_database",
+    "/ping_database/",
     response_model=PingResponse,
     status_code=status.HTTP_200_OK,
-    responses={status.HTTP_500_INTERNAL_SERVER_ERROR: {"description": "Database isn't working"}},
+    responses={
+        status.HTTP_500_INTERNAL_SERVER_ERROR: {
+            "description": "Database not working",
+        },
+    },
 )
 async def ping_database(
     session: AsyncSession = Depends(get_session),
@@ -32,5 +39,5 @@ async def ping_database(
         return PingResponse(message="Database worked!")
     raise HTTPException(
         status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-        detail="Database isn't working",
+        detail="Database not working",
     )

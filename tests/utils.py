@@ -22,7 +22,7 @@ def make_alembic_config(cmd_opts: Union[Namespace, SimpleNamespace], base_path: 
     path_to_folder = cmd_opts.config
     # Подменяем путь до файла alembic.ini на абсолютный
     if not os_path.isabs(cmd_opts.config):
-        cmd_opts.config = os_path.join(base_path, cmd_opts.config + "alembic.ini")
+        cmd_opts.config = "alembic.ini"
 
     config = Config(file_=cmd_opts.config, ini_section=cmd_opts.name, cmd_opts=cmd_opts)
 
