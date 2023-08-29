@@ -24,3 +24,7 @@ class User(BaseTable):
         back_populates="user",
         cascade="all, delete-orphan",
     )
+
+    def __repr__(self) -> str:
+        columns = {column.name: getattr(self, column.name) for column in self.__table__.columns}
+        return f'<{self.__tablename__}: {", ".join(map(lambda x: f"{x[0]}={x[1]}", columns.items()))}>'

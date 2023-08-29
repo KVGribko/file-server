@@ -1,6 +1,6 @@
 from re import compile
 
-from pydantic import BaseModel, EmailStr, constr, validator
+ 
 
 from app.config import get_settings
 
