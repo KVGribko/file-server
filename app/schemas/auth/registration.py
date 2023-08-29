@@ -8,7 +8,6 @@ from app.config import get_settings
 class RegistrationForm(BaseModel):
     username: constr(min_length=3, strip_whitespace=True)
     password: constr(min_length=8)
-    email: EmailStr | None
 
     @classmethod
     def _check_by_regexp(cls, password: str) -> None:
