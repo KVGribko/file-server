@@ -20,6 +20,7 @@ uvicorn = "^0.23.2"
 faker = "^19.3.0"
 factory-boy = "^3.3.0"
 pydantic-settings = "^2.0.2"
+passlib = "^1.7.4"
 
 
 

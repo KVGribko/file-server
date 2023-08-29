@@ -26,12 +26,12 @@ HELP_FUN = \
 env:  ##@Environment Create .env file with variables for localhost use
 	@$(eval SHELL:=/bin/bash)
 	@cp .env.example .env
-## @echo "SECRET_KEY=$$(openssl rand -hex 32)" >> .env
+	@echo "SECRET_KEY=$$(openssl rand -hex 32)" >> .env
 
 env_prod:  ##@Environment Create .env file with variables for docker
 	@$(eval SHELL:=/bin/bash)
 	@cp .env.example.docker .env
-## @echo "SECRET_KEY=$$(openssl rand -hex 32)" >> .env
+	@echo "SECRET_KEY=$$(openssl rand -hex 32)" >> .env
 
 help: ##@Help Show this help
 	@echo -e "Usage: make [target] ...\n"
