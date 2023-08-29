@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  db:
+    container_name: 'file_storage_postgres'
+    image: 'postgres'
+    restart: always
+    env_file:
+      - ./.env
+    ports:
+      - ${POSTGRES_PORT}:5432
+    volumes:
+      - db_value:/var/lib/postgresql/data/
+
+networks:
+  enrollment:
+    driver: bridge
+
+volumes:
+  db_value:
