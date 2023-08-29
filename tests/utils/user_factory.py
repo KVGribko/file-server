@@ -24,4 +24,3 @@ class UserFactory(Factory):
 
     username = Faker("first_name")
     password = generate_strong_password()
-    email = Faker("email")
