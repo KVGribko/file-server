@@ -11,12 +11,6 @@ poetry install
 poetry shell
 ```
 
-### Запуск всего приложения в docker-compose
-
-```bush
-make docker
-```
-
 ### Запуск
 
 1. Создание `.env` файла с необходимыми переменными:
