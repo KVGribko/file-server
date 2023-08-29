@@ -1,3 +1,5 @@
+from fastapi.security import OAuth2PasswordBearer
+from passlib.context import CryptContext
 from pydantic_settings import BaseSettings
 
 
@@ -18,6 +20,13 @@ class DefaultSettings(BaseSettings):
     POSTGRES_PORT: int = 32700
     POSTGRES_PORT_DOCKER: int = 5432
     POSTGRES_USER: str = "user"
+
+    SECRET_KEY: str = ""
+    ALGORITHM: str = "HS256"
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 1440
+
+    PWD_CONTEXT: CryptContext = CryptContext(schemes=["bcrypt"], deprecated="auto")
+    OAUTH2_SCHEME: OAuth2PasswordBearer = OAuth2PasswordBearer(tokenUrl=f"{APP_HOST}:{APP_PORT}{PATH_PREFIX}/user/authentication")
 
     @property
     def database_settings(self) -> dict:
