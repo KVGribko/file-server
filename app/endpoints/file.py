@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Body, Depends, HTTPException, Query, Request, UploadFile, File
+from fastapi import APIRouter, Body, Depends, File, HTTPException, Query, Request, UploadFile
 from fastapi.responses import FileResponse
 from sqlalchemy.ext.asyncio import AsyncSession
 from starlette import status
@@ -6,7 +6,7 @@ from starlette import status
 from app.db.connection import get_session
 from app.db.models import User
 from app.schemas import FileModel, UserFilesModel
-from app.utils.file import DownloadType, get_file, save_file_on_disk, create_file_in_db
+from app.utils.file import DownloadType, create_file_in_db, get_file, save_file_on_disk
 from app.utils.user import get_current_user
 
 
