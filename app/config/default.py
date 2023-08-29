@@ -7,7 +7,7 @@ class DefaultSettings(BaseSettings):
     ENV: str = "local"
     PATH_PREFIX: str = "/api/v1"
     APP_HOST: str = "http://127.0.0.1"
-    APP_PORT: int = 8080
+    APP_PORT: int = 8000
     APP_TITLE: str = "fast_api_app"
     APP_DESCRIPTION: str = "Микросервис, реализующий "
 

@@ -2,6 +2,7 @@ from logging import getLogger
 
 from fastapi import FastAPI
 from uvicorn import run
+from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import DefaultSettings
 from app.config.utils import get_settings
@@ -44,6 +45,13 @@ def get_app() -> FastAPI:
     settings = get_settings()
     bind_routes(application, settings)
     application.state.settings = settings
+    application.add_middleware(
+        CORSMiddleware,
+        allow_origins=["*"],
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
     return application
 
 

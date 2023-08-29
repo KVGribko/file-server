@@ -14,7 +14,7 @@ api_router = APIRouter(
 
 
 @api_router.get(
-    "/ping/",
+    "/ping",
     response_model=PingResponse,
     status_code=status.HTTP_200_OK,
 )
@@ -23,7 +23,7 @@ async def health_check():
 
 
 @api_router.get(
-    "/ping_database/",
+    "/ping_database",
     response_model=PingResponse,
     status_code=status.HTTP_200_OK,
     responses={
