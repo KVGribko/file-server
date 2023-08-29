@@ -2,7 +2,7 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.db.models import FileStorage
-from app.utils.file import DownloadType
+from app.utils.file.enum import DownloadType
 
 
 async def get_file(session: AsyncSession, path: str, type: DownloadType) -> FileStorage:
