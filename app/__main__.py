@@ -1,8 +1,8 @@
 from logging import getLogger
 
 from fastapi import FastAPI
-from uvicorn import run
 from fastapi.middleware.cors import CORSMiddleware
+from uvicorn import run
 
 from app.config import DefaultSettings
 from app.config.utils import get_settings

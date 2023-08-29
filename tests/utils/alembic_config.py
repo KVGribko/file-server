@@ -9,7 +9,7 @@ from configargparse import Namespace
 from app.config import get_settings
 
 
-PROJECT_PATH = Path(__file__).parent.parent.resolve()
+PROJECT_PATH = Path(__file__).parent.parent.parent.resolve()
 
 
 def make_alembic_config(cmd_opts: Union[Namespace, SimpleNamespace], base_path: Path = PROJECT_PATH) -> Config:
@@ -20,13 +20,11 @@ def make_alembic_config(cmd_opts: Union[Namespace, SimpleNamespace], base_path: 
     database_uri = get_settings().database_uri_sync
 
     path_to_folder = cmd_opts.config
-    # Подменяем путь до файла alembic.ini на абсолютный
     if not os_path.isabs(cmd_opts.config):
         cmd_opts.config = "alembic.ini"
 
     config = Config(file_=cmd_opts.config, ini_section=cmd_opts.name, cmd_opts=cmd_opts)
 
-    # Подменяем путь до папки с alembic на абсолютный
     alembic_location = config.get_main_option("script_location")
     if not os_path.isabs(alembic_location):
         config.set_main_option("script_location", os_path.join(base_path, path_to_folder + alembic_location))

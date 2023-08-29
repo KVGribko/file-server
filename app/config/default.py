@@ -26,7 +26,9 @@ class DefaultSettings(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 1440
 
     PWD_CONTEXT: CryptContext = CryptContext(schemes=["bcrypt"], deprecated="auto")
-    OAUTH2_SCHEME: OAuth2PasswordBearer = OAuth2PasswordBearer(tokenUrl=f"{APP_HOST}:{APP_PORT}{PATH_PREFIX}/user/authentication")
+    OAUTH2_SCHEME: OAuth2PasswordBearer = OAuth2PasswordBearer(
+        tokenUrl=f"{APP_HOST}:{APP_PORT}{PATH_PREFIX}/user/authentication"
+    )
 
     @property
     def database_settings(self) -> dict:

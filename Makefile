@@ -71,10 +71,10 @@ else
 endif
 
 test:  ##@Testing Test application with pytest
-	make db && $(TEST)
+	$(TEST)
 
 test-cov:  ##@Testing Test application with pytest and create coverage report
-	make db && $(TEST) --cov=$(APPLICATION_NAME) --cov-report html --cov-fail-under=70
+	$(TEST) --cov=$(APPLICATION_NAME) --cov-report html --cov-fail-under=70
 
 clean:  ##@Code Clean directory from garbage files
 	rm -fr *.egg-info dist

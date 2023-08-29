@@ -16,10 +16,15 @@ from sqlalchemy_utils import create_database, database_exists, drop_database
 
 from tests.utils import make_alembic_config
 
-import app.utils as utils_module
 from app.__main__ import get_app
 from app.config.utils import get_settings
 from app.db.connection import SessionManager
+
+
+pytest_plugins = [
+    "tests.fixtures.user",
+    "tests.fixtures.postgres",
+]
 
 
 @pytest.fixture(scope="session")
