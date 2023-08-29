@@ -33,7 +33,7 @@ class RegistrationForm(BaseModel):
 
     @validator("password")
     def validate_password(cls, password):
-        cls._check_by_regexp(password)
+        # cls._check_by_regexp(password)
         settings = get_settings()
         password = settings.PWD_CONTEXT.hash(password)
         return password
