@@ -8,8 +8,7 @@ from starlette import status
 from app.config import get_settings
 from app.db.connection import get_session
 from app.db.models import User
-from app.schemas import RegistrationForm, RegistrationSuccess, Token
-from app.schemas import User as UserSchema
+from app.schemas import RegistrationForm, RegistrationSuccess, Token, UserModel
 from app.utils.user import authenticate_user, create_access_token, delete_user, get_current_user, register_user
 
 
@@ -82,7 +81,7 @@ async def registration(
 @api_router.get(
     "/me",
     status_code=status.HTTP_200_OK,
-    response_model=UserSchema,
+    response_model=UserModel,
     responses={
         status.HTTP_401_UNAUTHORIZED: {
             "description": "Could not validate credentials",

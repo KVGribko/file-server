@@ -17,3 +17,11 @@ class FileModel(BaseModel):
 
     class Config:
         from_attributes = True
+
+
+class UserFilesModel(BaseModel):
+    id: UUID4
+    files: list[FileModel]
+
+    class Config:
+        from_attributes = True

@@ -3,7 +3,7 @@ from datetime import datetime
 from pydantic import BaseModel
 
 
-class User(BaseModel):
+class UserModel(BaseModel):
     username: str
     dt_created: datetime
     dt_updated: datetime
