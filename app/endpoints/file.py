@@ -66,7 +66,6 @@ async def upload_file(
 @api_router.get(
     "/download",
     status_code=status.HTTP_200_OK,
-    response_model=FileModel,
     responses={
         status.HTTP_400_BAD_REQUEST: {
             "description": "Bad parameters:",

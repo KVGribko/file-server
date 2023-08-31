@@ -6,6 +6,7 @@ from pydantic_settings import BaseSettings
 
 
 class DefaultSettings(BaseSettings):
+    # Имеется ввиду что это константы. Или все ровно нет необходимости в заглавных буквах?
     ENV: str = "local"
     PATH_PREFIX: str = "/api/v1"
     APP_HOST: str = "http://127.0.0.1"
