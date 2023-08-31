@@ -1,0 +1,6 @@
+version: '3'
+
+services:
+  db:
+    ports:
+      - 32700:5432
